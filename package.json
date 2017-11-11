@@ -12,7 +12,6 @@
     "start-dev": "node_modules/.bin/npm-run-all --parallel compile-watch up-dev",
     "compile-watch": "./node_modules/.bin/tsc -w",
     "up-dev": "node_modules/.bin/nodemon --inspect=0.0.0.0:9229 dist/index.js"
-    // "precommit": "npm run lint && npm test"
   },
   "author": "",
   "license": "ISC",
@@ -40,7 +39,6 @@
     "@types/node": "^8.0.51",
     "@types/vision": "^4.1.3",
     "code": "^5.1.2",
-    "husky": "^0.14.3",
     "lab": "^15.1.2",
     "nodemon": "^1.12.1",
     "npm-run-all": "^4.1.2",
