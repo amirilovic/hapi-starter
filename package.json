@@ -22,10 +22,12 @@
     "good": "^7.3.0",
     "good-console": "^6.4.0",
     "hapi": "^16.6.2",
+    "hapi-auth-jwt2": "^7.4.1",
     "hapi-swagger": "^8.0.0",
     "hoek": "^5.0.2",
     "inert": "^4.2.1",
     "joi": "^13.0.1",
+    "jsonwebtoken": "^8.1.1",
     "rollbar": "^2.3.1",
     "vision": "^4.1.0"
   },

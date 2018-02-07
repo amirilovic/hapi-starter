@@ -2,6 +2,7 @@
     "app": {
       "port": "APP_PORT",
       "name": "APP_NAME",
-      "logLevel": "LOG_LEVEL"
+      "logLevel": "LOG_LEVEL",
+      "jwtSecret": "JWT_SECRET"
     }
   }
