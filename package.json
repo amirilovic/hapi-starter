@@ -4,14 +4,16 @@
   "description": "HapiJS Starter",
   "main": "index.js",
   "scripts": {
-    "start": "node_modules/.bin/npm-run-all compile up",
+    "start": "node_modules/.bin/npm-run-all compile serve",
+    "start:dev": "node_modules/.bin/npm-run-all --parallel compile:watch watch",
+    "serve": "node dist/index.js",
+    "serve:dev": "node --inspect=0.0.0.0:9229 dist/index.js",
+    "watch": "./node_modules/.bin/nodemon",
     "compile": "./node_modules/.bin/tsc",
-    "up": "node dist/index.js",
-    "test": "NODE_ENV=test ./node_modules/.bin/lab -v -I '__core-js_shared__' dist/test/ && echo Test Passed ❤",
-    "lint": "./node_modules/.bin/tslint 'src/**/*.ts' && echo Lint Passed ❤",
-    "start-dev": "node_modules/.bin/npm-run-all --parallel compile-watch up-dev",
-    "compile-watch": "./node_modules/.bin/tsc -w",
-    "up-dev": "node_modules/.bin/nodemon --inspect=0.0.0.0:9229 dist/index.js"
+    "compile:watch": "./node_modules/.bin/tsc -w",
+    "test": "NODE_ENV=test ./node_modules/.bin/lab --inspect=9229 --sourcemaps --transform node_modules/lab-transform-typescript --leaks -v -I '__core-js_shared__' src/test/ && echo Test Passed ❤",
+    "test:watch": "./node_modules/.bin/nodemon --exec \"npm test\"",
+    "lint": "./node_modules/.bin/tslint 'src/**/*.ts' && echo Lint Passed ❤"
   },
   "author": "",
   "license": "ISC",
@@ -42,8 +44,10 @@
     "@types/vision": "^4.1.3",
     "code": "^5.1.2",
     "lab": "^15.1.2",
+    "lab-transform-typescript": "^3.0.1",
     "nodemon": "^1.12.1",
     "npm-run-all": "^4.1.2",
+    "ts-node": "^4.1.0",
     "tslint": "^5.8.0",
     "typescript": "^2.6.1"
   }
