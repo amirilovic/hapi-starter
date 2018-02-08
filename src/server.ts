@@ -1,10 +1,8 @@
 import { Server } from 'hapi';
 import * as config from 'config';
 import routes from './routes';
-import * as plugins from './plugins';
 import logger from './utils/logger';
-import { errorHandler } from './middlewares/error-handler';
-import { authHandler } from './middlewares/auth-handler';
+import { registerPlugins } from './plugins';
 
 const server = new Server();
 
@@ -17,17 +15,7 @@ server.connection({
 
 const init = async () => {
 
-  errorHandler(server);
-
-  await server.register(plugins);
-
-  server.auth.strategy('jwt', 'jwt', {
-    key: config.get('app.jwtSecret'),
-    validateFunc: authHandler,
-    verifyOptions: { algorithms: ['HS256'] },
-  });
-
-  server.auth.default('jwt');
+  await registerPlugins(server);
 
   server.route(routes);
 

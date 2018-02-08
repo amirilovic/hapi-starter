@@ -30,7 +30,7 @@ const startServer = async () => {
     // add things here before the app starts, like database connection check etc
     const srv = await server.init();
     await srv.start();
-    logger.info(`server started at port: ${config.get('app.port')} with env: ${config.util.getEnv('NODE_ENV')}`);
+    logger.info(`server started at port: ${config.get('app.port')} with env: ${config.get('app.env')}`);
   } catch (error) {
     logger.error(error);
     process.exit(1);

@@ -1,53 +1,21 @@
-import * as Inert from 'inert';
-import * as Vision from 'vision';
 import * as HapiSwagger from 'hapi-swagger';
-import * as Good from 'good';
+import * as HapiAuthJwt2 from 'hapi-auth-jwt2';
 import * as config from 'config';
-import * as Jwt from 'hapi-auth-jwt2';
-
-const Package = require('../package.json');
+import { jwtAuthPlugin } from './plugins/jwt-auth-plugin';
+import { goodPlugin } from './plugins/good-plugin';
+import { hapiSwaggerPlugin } from './plugins/hapi-swagger-plugin';
+import { errorHandler } from './middlewares/error-handler';
 
 const DEVELOPMENT = 'development';
 
-let plugins = [];
+export const registerPlugins = async (server) => {
 
-if (config.util.getEnv('NODE_ENV') === DEVELOPMENT) {
+  errorHandler(server);
 
-  // add hapi swagger integration
-  plugins = plugins.concat([Inert,
-    Vision,
-    {
-      register: HapiSwagger,
-      options: {
-        info: {
-          title: Package.description,
-          version: Package.version,
-        },
-        securityDefinitions: {
-          jwt: {
-            type: 'apiKey',
-            name: 'Authorization',
-            in: 'header',
-          },
-        },
-        security: [{ jwt: [] }],
-        pathPrefixSize: 4,
-      },
-    },
-    Jwt,
-  ]);
+  await jwtAuthPlugin(server);
+  await goodPlugin(server);
 
-  // add good console for log reporting
-  plugins.push({
-    register: Good,
-    options: {
-      reporters: {
-        console: [{
-          module: 'good-console',
-        }, 'stdout'],
-      },
-    },
-  });
-}
-
-export = plugins;
+  if (config.get('app.env') === DEVELOPMENT) {
+    await hapiSwaggerPlugin(server);
+  }
+};

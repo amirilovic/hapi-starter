@@ -1,5 +1,6 @@
 {
     "app": {
+      "env": "NODE_ENV",
       "port": "APP_PORT",
       "name": "APP_NAME",
       "logLevel": "LOG_LEVEL",
