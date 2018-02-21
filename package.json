@@ -31,7 +31,8 @@
     "joi": "^13.0.1",
     "jsonwebtoken": "^8.1.1",
     "rollbar": "^2.3.1",
-    "vision": "^4.1.0"
+    "vision": "^4.1.0",
+    "typescript": "^2.6.1"
   },
   "devDependencies": {
     "@types/boom": "^4.3.8",
@@ -47,8 +48,6 @@
     "lab-transform-typescript": "^3.0.1",
     "nodemon": "^1.12.1",
     "npm-run-all": "^4.1.2",
-    "ts-node": "^4.1.0",
-    "tslint": "^5.8.0",
-    "typescript": "^2.6.1"
+    "tslint": "^5.8.0"
   }
 }

@@ -5,13 +5,10 @@ services:
     build:
       context: .
     volumes:
-      - 'starter-api-src-sync:/app:nocopy'
+      - '.:/app:delegated'
     env_file:
       - .env
     command: npm run start:dev
     ports:
       - "3030:3030"
       - "9229:9229"
-volumes:
-  starter-api-src-sync:
-    external: true
